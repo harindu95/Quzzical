@@ -1,0 +1,16 @@
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  margin: 0 auto;
+  padding: 40px;
+  /* justify-content: space-around; */
+}
+
+.chat,
+.quiz {
+  border: 1px solid black;
+  flex-grow: 1;
+}

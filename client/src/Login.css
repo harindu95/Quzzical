@@ -42,7 +42,8 @@ input {
     /* max-width: 500px; */
     height: max-content;
     align-self: center;
-    padding: 30px 60px;
+    padding: 40px;
+    flex-basis: 40%;
   }
   .Login {
     display: flex;

@@ -1,16 +1,15 @@
-import "./Login.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./Login";
+import Home from "./Home";
 
 function App() {
   return (
-    <div className="Login">
-      <section className="login-section">
-        <h1> Quizzical </h1>
-        <label htmlFor="username">Username</label>
-        <input id="username"></input>
-        <button>Login</button>
-        <div className="padding"></div>
-      </section>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route index element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
