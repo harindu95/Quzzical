@@ -1,0 +1,44 @@
+.game {
+  padding: 10px;
+  border: 1px grey solid;
+  background-color: orange;
+}
+
+.answer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  height: 75px;
+  border: 2px black solid;
+  width: 100%;
+}
+
+#ans1 {
+  background-color: green;
+}
+#ans2 {
+  background-color: red;
+}
+#ans3 {
+  background-color: blue;
+}
+#ans4 {
+  background-color: yellow;
+}
+
+.question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 2px black solid;
+  border-radius: 2px;
+  background-color: purple;
+}
+
+.chat {
+  margin-top: 24px;
+  border: 2px solid black;
+  height: 100%;
+}
