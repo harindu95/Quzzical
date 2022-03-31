@@ -33,12 +33,13 @@ function a11yProps(index) {
 
 const Main = (props) => {
   const [value, setValue] = useState(0);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <h1>Quizzicle</h1>
       <Grid container>
         <Grid container item justify="center" md={12}>
@@ -52,17 +53,15 @@ const Main = (props) => {
           </Tabs>
         </Grid>
 
-        <Grid item md={9}>
+        <Grid item md={12}>
           <TabPanel value={value} index={0}>
-            <Game />
+            <Grid item md={12}>
+              <Game />
+            </Grid>
           </TabPanel>
           <TabPanel value={value} index={1}>
             <Statistic />
           </TabPanel>
-        </Grid>
-
-        <Grid item md={3}>
-          <ChatBox />
         </Grid>
       </Grid>
     </Container>

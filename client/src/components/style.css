@@ -1,44 +1,48 @@
 .game {
-  padding: 10px;
-  border: 1px grey solid;
+  padding: 50px;
+  border: 2px black solid;
   background-color: orange;
+  border-radius: 10px;
 }
 
 .answer {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 2px;
-  height: 75px;
-  border: 2px black solid;
+  height: 120px;
   width: 100%;
 }
 
 #ans1 {
   background-color: green;
+  border-radius: 10px;
 }
 #ans2 {
   background-color: red;
+  border-radius: 10px;
 }
 #ans3 {
   background-color: blue;
+  border-radius: 10px;
 }
 #ans4 {
   background-color: yellow;
+  border-radius: 10px;
 }
 
 .question {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 300px;
   border: 2px black solid;
-  border-radius: 2px;
+  border-radius: 10px;
   background-color: purple;
 }
 
 .chat {
   margin-top: 24px;
   border: 2px solid black;
-  height: 100%;
+  height: 50vh;
+  width: 100%;
 }
