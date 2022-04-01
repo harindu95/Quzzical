@@ -5,12 +5,27 @@ function Game(props) {
   const [index, setIndex] = useState(0);
   const [apiData, setData] = useState(undefined);
   const [questions, setQuestions] = useState([]);
+  const [score, setScore] = useState(0);
 
   const handleClick = (e) => {
-    console.log(questions);
-
+    let answerId = e.currentTarget.id;
+    let answer = "";
+    if (answerId === "ans1") answer = questions[index].answers[0];
+    if (answerId === "ans2") answer = questions[index].answers[1];
+    if (answerId === "ans3") answer = questions[index].answers[2];
+    if (answerId === "ans4") answer = questions[index].answers[3];
+    if (questions[index].correct_answer === answer) {
+      console.log("Correct!");
+      setScore(score + 1);
+    } else {
+      console.log("Incorrect");
+      console.log(questions[index].correct_answer, answer, answerId);
+    }
     if (index < questions.length - 1) {
       setIndex(index + 1);
+    } else {
+      console.log("Your score is ", score);
+      //submit score to server
     }
   };
 
