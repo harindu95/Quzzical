@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+var cors = require("cors");
+const port = 2000;
 const axios = require("axios");
 
 app.use(express.json());
+app.use(cors());
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
@@ -14,8 +16,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/questions", async (req, res) => {
+  console.log("sendin");
   try {
-    const response = await axios.get("https://opentdb.com/api.php?amount=10");
+    const response = await axios.get(
+      "https://opentdb.com/api.php?amount=10&type=multiple&encode=url3986"
+    );
     const data = response.data.results;
     res.send(data);
   } catch (error) {

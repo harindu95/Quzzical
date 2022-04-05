@@ -4,6 +4,10 @@
   background-color: orange;
   border-radius: 10px;
 }
+h1 {
+  color: white;
+  text-shadow: 1px 2px 3px black;
+}
 
 .answer {
   display: flex;
@@ -13,19 +17,19 @@
   width: 100%;
 }
 
-#ans1 {
+#_0 {
   background-color: green;
   border-radius: 10px;
 }
-#ans2 {
+#_1 {
   background-color: red;
   border-radius: 10px;
 }
-#ans3 {
+#_2 {
   background-color: blue;
   border-radius: 10px;
 }
-#ans4 {
+#_3 {
   background-color: yellow;
   border-radius: 10px;
 }

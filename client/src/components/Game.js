@@ -1,29 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, Grid, Button } from "@mui/material";
+import { Box, Container, Grid, Button, Modal } from "@mui/material";
 import ChatBox from "./ChatBox";
 function Game(props) {
   const [index, setIndex] = useState(0);
   const [apiData, setData] = useState(undefined);
   const [questions, setQuestions] = useState([]);
+  const [score, setScore] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const handleClick = (e) => {
-    console.log(questions);
+    console.log(e.target.id);
+
+    const correctAnswer = questions[index].correctAnswer;
+    const answer = questions[index].answers[parseInt(e.target.id.charAt(1))];
+
+    if (correctAnswer === answer) {
+      setScore(score + 1);
+      console.log("correct");
+    } else {
+      console.log("nope");
+    }
 
     if (index < questions.length - 1) {
       setIndex(index + 1);
+    } else {
+      setOpen(true);
     }
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const getQuestions = async () => {
-    await fetch(
-      "https://opentdb.com/api.php?amount=10&type=multiple&encode=url3986"
-    )
+    await fetch("http://localhost:2000/questions")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         let _questions = [];
-        data.results.forEach((element) => {
+        data.forEach((element) => {
           const splice = Math.floor(Math.random() * 4);
 
           let answers = element.incorrect_answers;
@@ -62,12 +79,13 @@ function Game(props) {
 
           <Grid item xs={12} md={6}>
             <Button
+              key="0"
               onClick={(e) => handleClick(e)}
               variant="primary"
               className="answer"
-              id="ans1"
+              id="_0"
             >
-              <div>{decodeURIComponent(questions[index].answers[0])}</div>
+              <h1>{decodeURIComponent(questions[index].answers[0])}</h1>
             </Button>
           </Grid>
 
@@ -76,9 +94,9 @@ function Game(props) {
               onClick={(e) => handleClick(e)}
               variant="primary"
               className="answer"
-              id="ans2"
+              id="_1"
             >
-              <div>{decodeURIComponent(questions[index].answers[1])}</div>
+              <h1>{decodeURIComponent(questions[index].answers[1])}</h1>
             </Button>
           </Grid>
 
@@ -87,9 +105,9 @@ function Game(props) {
               onClick={(e) => handleClick(e)}
               variant="primary"
               className="answer"
-              id="ans3"
+              id="_2"
             >
-              <div>{decodeURIComponent(questions[index].answers[2])}</div>
+              <h1>{decodeURIComponent(questions[index].answers[2])}</h1>
             </Button>
           </Grid>
 
@@ -98,12 +116,20 @@ function Game(props) {
               onClick={(e) => handleClick(e)}
               variant="primary"
               className="answer"
-              id="ans4"
+              id="_3"
             >
-              <div>{decodeURIComponent(questions[index].answers[3])}</div>
+              <h1>{decodeURIComponent(questions[index].answers[3])}</h1>
             </Button>
           </Grid>
         </Grid>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="parent-modal-title"
+          aria-describedby="parent-modal-description"
+        >
+          <h1>your score is: {score}</h1>
+        </Modal>
       </Container>
     );
   }
