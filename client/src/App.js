@@ -12,7 +12,7 @@ function App() {
   }
 
   if (loggedIn) {
-    return <Main />;
+    return <Main username={username} />;
   } else {
     return <Login login={login} />;
   }

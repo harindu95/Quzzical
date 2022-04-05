@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Container, Grid, Button } from "@mui/material";
 import ChatBox from "./ChatBox";
-function Game(props) {
+function Game({ username }) {
   const [index, setIndex] = useState(0);
   const [apiData, setData] = useState(undefined);
   const [questions, setQuestions] = useState([]);
@@ -26,6 +26,20 @@ function Game(props) {
     } else {
       console.log("Your score is ", score);
       //submit score to server
+      let options = {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username,
+          score: score,
+        }),
+      };
+      fetch("http://localhost:3000/submitScore/", options)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => console.log(e));
     }
   };
 

@@ -56,7 +56,7 @@ const Main = (props) => {
         <Grid item md={12}>
           <TabPanel value={value} index={0}>
             <Grid item md={12}>
-              <Game />
+              <Game username={props.username} />
             </Grid>
           </TabPanel>
           <TabPanel value={value} index={1}>
