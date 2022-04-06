@@ -64,6 +64,23 @@ function Game({ username }) {
     } else {
       setOpen(true);
       console.log(questions);
+      console.log("Your score is ", score);
+      //submit score to server
+      let options = {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username,
+          score: score,
+        }),
+      };
+      fetch("http://localhost:2000/submitScore/", options)
+        .then((response) => {
+          console.log(response);
+          // Show congrats page here
+        })
+        .catch((e) => console.log(e));
     }
   };
   const getQuestions = async () => {
