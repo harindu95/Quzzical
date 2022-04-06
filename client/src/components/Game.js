@@ -1,30 +1,55 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, Grid, Button, Modal } from "@mui/material";
+import { Snackbar, Alert, Container, Grid, Button, Modal } from "@mui/material";
 import ChatBox from "./ChatBox";
+import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
+import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
 function Game(props) {
+  const [resultIcon, setResulIcon] = useState();
   const [index, setIndex] = useState(0);
   const [apiData, setData] = useState(undefined);
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
 
   const handleClick = (e) => {
-    console.log(e.target.id);
-
-    const correctAnswer = questions[index].correctAnswer;
+    console.log(questions);
+    const correctAnswer = questions[index].correct_answer;
     const answer = questions[index].answers[parseInt(e.target.id.charAt(1))];
+
+    questions[index].index = parseInt(e.target.id.charAt(1));
 
     if (correctAnswer === answer) {
       setScore(score + 1);
-      console.log("correct");
-    } else {
-      console.log("nope");
-    }
+      const right = (
+        <CheckCircleTwoToneIcon
+          stroke={"black"}
+          stroke-width={0.1}
+          style={{
+            color: "Green",
+            fontSize: "300px",
+            textShadow: "5px 5px 20px black",
+          }}
+        />
+      );
 
-    if (index < questions.length - 1) {
-      setIndex(index + 1);
+      setOpenAlert(true);
+      setResulIcon(right);
     } else {
-      setOpen(true);
+      const wrong = (
+        <CancelTwoToneIcon
+          stroke={"black"}
+          stroke-width={0.1}
+          style={{
+            color: "red",
+            fontSize: "300px",
+            textShadow: "5px 5px 20px black",
+          }}
+        />
+      );
+
+      setResulIcon(wrong);
+      setOpenAlert(true);
     }
   };
 
@@ -32,6 +57,15 @@ function Game(props) {
     setOpen(false);
   };
 
+  const closeAlert = () => {
+    setOpenAlert(false);
+    if (index < questions.length - 1) {
+      setIndex(index + 1);
+    } else {
+      setOpen(true);
+      console.log(questions);
+    }
+  };
   const getQuestions = async () => {
     await fetch("http://localhost:2000/questions")
       .then((response) => {
@@ -67,13 +101,20 @@ function Game(props) {
   if (questions.length < 5) {
     return <h1>loading game...</h1>;
   } else {
-    console.log(questions);
     return (
       <Container maxWidth="xl" className="game">
         <Grid spacing={1} container>
           <Grid item xs={12} md={12}>
             <div className="question">
               <h1>{questions[index].question.toString()}</h1>
+              <Snackbar
+                open={openAlert}
+                autoHideDuration={400}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                onClose={closeAlert}
+              >
+                {resultIcon}
+              </Snackbar>
             </div>
           </Grid>
 
