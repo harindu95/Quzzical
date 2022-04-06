@@ -3,7 +3,7 @@ import { Snackbar, Alert, Container, Grid, Button, Modal } from "@mui/material";
 import ChatBox from "./ChatBox";
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
 import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
-function Game(props) {
+function Game({ username }) {
   const [resultIcon, setResulIcon] = useState();
   const [index, setIndex] = useState(0);
   const [apiData, setData] = useState(undefined);

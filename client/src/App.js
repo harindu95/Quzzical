@@ -1,16 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login";
-import Home from "./Home";
+import Main from "./components/Main";
+import { useState } from "react";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route index element={<Home />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  const [username, setUsername] = useState("");
+  const [loggedIn, setLoginStatus] = useState(false);
+
+  function login(name) {
+    setUsername(name);
+    setLoginStatus(true);
+  }
+
+  if (loggedIn) {
+    return <Main username={username} />;
+  } else {
+    return <Login login={login} />;
+  }
 }
 
 export default App;

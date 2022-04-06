@@ -3,16 +3,49 @@ const app = express();
 var cors = require("cors");
 const port = 2000;
 const axios = require("axios");
+const mysql = require("mysql");
 
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "quzzical",
+  password: "password",
+  database: "quzzical",
+});
+connection.connect();
+app.use(cors());
 app.use(express.json());
 app.use(cors());
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Quizzical app listening at http://localhost:${port}`);
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Quizzical Server is running!");
+});
+
+app.get("/getLeaderboard/", (req, res) => {
+  connection.query(
+    "SELECT * FROM player ORDER BY score DESC LIMIT 10",
+    (err, results, fields) => {
+      if (err) throw err;
+
+      res.send(JSON.parse(JSON.stringify(results)));
+    }
+  );
+});
+
+app.post("/submitScore/", (req, res) => {
+  let { username, score } = req.body;
+  //console.log("username", username);
+  connection.query(
+    "INSERT INTO player(username,score) VALUES(?,?)",
+    [username, score],
+    (err, rows, fields) => {
+      if (err) throw err;
+    }
+  );
+  res.send("Username and score stored successfully");
 });
 
 app.get("/questions", async (req, res) => {
@@ -27,15 +60,3 @@ app.get("/questions", async (req, res) => {
     console.log(error);
   }
 });
-
-app.post("/submit", (req, res) => {
-  let { username, score, time } = req.body;
-  console.log("username", username);
-  res.send(username);
-});
-
-// const res = axios.post("http://localhost:3000/submit", {
-//   username: "user",
-//   score: 50,
-//   time: 40,
-// });
