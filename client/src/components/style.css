@@ -7,6 +7,13 @@
 h1 {
   color: white;
   text-shadow: 1px 2px 3px black;
+  margin: 0px;
+}
+
+h2 {
+  color: white;
+  text-shadow: 1px 2px 3px black;
+  margin: 0px;
 }
 
 .answer {
@@ -18,7 +25,7 @@ h1 {
 }
 
 #_0 {
-  background-color: green;
+  background-color: purple;
   border-radius: 10px;
 }
 #_1 {
@@ -35,14 +42,16 @@ h1 {
 }
 
 .question {
-  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  align-content: center;
   height: 300px;
   border: 2px black solid;
   border-radius: 10px;
-  background-color: purple;
+  background-color: green;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 20px;
 }
 
 .chat {

@@ -5,13 +5,6 @@ const port = 2000;
 const axios = require("axios");
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "quzzical",
-  password: "password",
-  database: "quzzical",
-});
-connection.connect();
 app.use(cors());
 app.use(express.json());
 app.use(cors());
