@@ -20,7 +20,7 @@ const Scoreboard = (props) => {
 
   return (
     <Box sx={{ ...style }}>
-      <h3> Your score is: {parseInt(score) + 10}</h3>
+      <h3> Your score is: {score}</h3>
     </Box>
   );
 };

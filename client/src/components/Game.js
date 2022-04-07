@@ -13,7 +13,7 @@ function Game({ username }) {
     question: false,
   });
   const [quizState, setQuizState] = useState({
-    totalTime: 60,
+    totalTime: 20,
     totalQuestions: 10,
     clock: false,
   });
@@ -24,21 +24,16 @@ function Game({ username }) {
   const [resultIcon, setResulIcon] = useState();
   const [index, setIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
-  const [score, setScore] = useState(
-    quizState.totalTime * quizState.totalQuestions
-  );
+  const [score, setScore] = useState(0);
   const [open, setOpen] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
 
   const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
-      endGame();
+      handleClick("timeout");
+      setKey((prevKey) => prevKey + 1);
     }
     if (remainingTime != time.currentTime) {
-      setScore(
-        score -
-          (quizState.totalTime * quizState.totalQuestions) / quizState.totalTime
-      );
       setTime({ startTime: time.startTime, currentTime: remainingTime });
     }
 
@@ -50,21 +45,21 @@ function Game({ username }) {
   };
 
   const handleClick = (e) => {
-    console.log(time);
-    setButtonState({ answer: true, question: true });
-    setTime({ startTime: time.currentTime, currentTime: time.currentTime });
+    console.log(e);
 
-    const correctAnswer = questions[index].correct_answer;
-    const answer = questions[index].answers[parseInt(e.target.id.charAt(1))];
+    let correctAnswer = "";
+    let answer = "default";
+    if (e !== "timeout") {
+      setButtonState({ answer: true, question: true });
+      setTime({ startTime: time.currentTime, currentTime: time.currentTime });
 
-    questions[index].index = parseInt(e.target.id.charAt(1));
+      correctAnswer = questions[index].correct_answer;
+      answer = questions[index].answers[parseInt(e.target.id.charAt(1))];
+      questions[index].index = parseInt(e.target.id.charAt(1));
+    }
 
     if (correctAnswer === answer) {
-      setScore(
-        score +
-          (quizState.totalTime * quizState.totalQuestions) /
-            quizState.totalQuestions
-      );
+      setScore(score + time.currentTime);
       const right = (
         <CheckCircleTwoToneIcon
           stroke={"black"}
@@ -80,11 +75,6 @@ function Game({ username }) {
       setOpenAlert(true);
       setResulIcon(right);
     } else {
-      setScore(
-        score -
-          (quizState.totalTime * quizState.totalQuestions) /
-            quizState.totalQuestions
-      );
       const wrong = (
         <CancelTwoToneIcon
           stroke={"black"}
@@ -96,12 +86,9 @@ function Game({ username }) {
           }}
         />
       );
-
       setResulIcon(wrong);
       setOpenAlert(true);
     }
-
-    console.log(score);
   };
 
   const handleClose = () => {
@@ -119,20 +106,19 @@ function Game({ username }) {
 
     setIndex(index + 1);
     setButtonState({ answer: false, question: true });
-    setQuizState({ totalTime: 60, totalQuestions: 10, clock: true });
+    setQuizState({ totalTime: 20, totalQuestions: 10, clock: true });
   };
 
   const closeAlert = () => {
     setOpenAlert(false);
     if (index < questions.length - 2) {
+      setKey((prevKey) => prevKey + 1);
       setButtonState(false);
       setIndex(index + 1);
       setButtonState({ answer: false, question: true });
     } else {
       endGame();
       setOpen(true);
-      console.log(questions);
-      console.log("Your score is ", score);
       //submit score to server
       let options = {
         method: "POST",
@@ -157,7 +143,7 @@ function Game({ username }) {
     setOpen(true);
     setIndex(questions.length - 1);
     setKey((prevKey) => prevKey + 1);
-    setQuizState({ totalTime: 60, totalQuestions: 10, clock: false });
+    setQuizState({ totalTime: 20, totalQuestions: 10, clock: false });
   };
 
   const getQuestions = async () => {
