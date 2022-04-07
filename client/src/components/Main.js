@@ -42,7 +42,8 @@ function a11yProps(index) {
 
 const Main = (props) => {
   const [value, setValue] = useState(0);
-
+  const color =
+    "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -82,7 +83,7 @@ const Main = (props) => {
               <Statistic />
             </TabPanel>
             <TabPanel value={value} index={2}>
-              <ChatBox nickname={props.username} color="purple" />
+              <ChatBox nickname={props.username} color={color} />
             </TabPanel>
           </Grid>
         </Grid>

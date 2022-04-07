@@ -9,14 +9,19 @@ function ChatBox(props) {
   const [nickname, setnickname] = useState(props.nickname);
   const [currentText, setCurrentText] = useState("");
   const [messages, setMessages] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const emptyString = undefined;
-    socket.emit("message", { user: { nickname, color }, emptyString });
-    socket.on("message", (messages) => {
-      setMessages(messages);
-    });
-    console.log(nickname);
+    console.log("chat reload");
+    if (!loaded) {
+      const emptyString = undefined;
+      socket.emit("message", { user: { nickname, color }, emptyString });
+      socket.on("message", (messages) => {
+        setMessages(messages);
+      });
+      console.log(nickname);
+      setLoaded(true);
+    }
   }, [messages]);
   const handleTextField = (e) => {
     setCurrentText(e.target.value);
