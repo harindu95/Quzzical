@@ -13,7 +13,7 @@ function Statistic(props) {
   const [stats, setStats] = useState([]);
 
   const getStats = async () => {
-    await fetch("http://localhost:3000/getLeaderboard/")
+    await fetch("http://localhost:2000/getLeaderboard/")
       .then((response) => {
         return response.json();
       })
