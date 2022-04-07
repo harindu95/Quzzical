@@ -49,7 +49,9 @@ function Statistic(props) {
           {stats.map((item, index) => (
             <TableRow
               style={
-                index % 2 ? { background: "white" } : { background: "#D3D3D3" }
+                index % 2
+                  ? { background: "white" }
+                  : { background: "rgb(200, 200, 200)" }
               }
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >

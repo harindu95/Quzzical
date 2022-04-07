@@ -6,7 +6,9 @@ body {
 }
 
 .login-section {
-  background-color: #282c34;
+  background-color: rgb(1, 145, 212);
+  border: solid black 2px;
+  border-radius: 5px;
   color: white;
   display: flex;
   flex-direction: column;
