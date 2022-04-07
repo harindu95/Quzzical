@@ -7,6 +7,7 @@ import {
   TableCell,
   TableRow,
   TableHead,
+  Divider,
 } from "@mui/material";
 
 function Statistic(props) {
@@ -31,27 +32,31 @@ function Statistic(props) {
   }, []);
 
   return (
-    <Container maxWidth="md" className="stats">
-      <h1>Leaderboard</h1>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <Container maxWidth="md" className="leaderboard">
+      <div className="banner" style={{ backgroundColor: "rgb(227, 70, 14)" }}>
+        <h1>Leaderboard</h1>
+      </div>
+      <Table sx={{ margin: "0px" }} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
             {" "}
-            <TableCell align="left">Rank</TableCell>
-            <TableCell align="left">Username</TableCell>
-            <TableCell align="left">Score</TableCell>
+            <TableCell align="center">Rank</TableCell>
+            <TableCell align="center">Username</TableCell>
+            <TableCell align="center">Score</TableCell>
           </TableRow>
         </TableHead>
-
         <TableBody>
-          {stats.map((item) => (
+          {stats.map((item, index) => (
             <TableRow
+              style={
+                index % 2 ? { background: "white" } : { background: "#D3D3D3" }
+              }
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               {" "}
-              <TableCell align="left">{item.rank}</TableCell>
-              <TableCell align="left">{item.username}</TableCell>
-              <TableCell align="left">{item.score}</TableCell>
+              <TableCell align="center">{item.rank}</TableCell>
+              <TableCell align="center">{item.username}</TableCell>
+              <TableCell align="center">{item.score}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -4,6 +4,12 @@
   background-color: orange;
   border-radius: 10px;
 }
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
 h1 {
   color: white;
   text-shadow: 1px 2px 3px black;
@@ -65,4 +71,17 @@ h3 {
   border: 2px solid black;
   height: 50vh;
   width: 100%;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  width: 100%;
+}
+
+.leaderboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

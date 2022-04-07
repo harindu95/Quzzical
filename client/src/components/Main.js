@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import Game from "./Game";
 import Statistic from "./Statistic";
 import ChatBox from "./ChatBox";
-import { Tab, Tabs, Typography, Box, Container, Grid } from "@mui/material";
+import {
+  Tab,
+  Tabs,
+  Typography,
+  Box,
+  Container,
+  Grid,
+  Divider,
+} from "@mui/material";
 import "./style.css";
 
 function TabPanel(props) {
@@ -39,32 +47,39 @@ const Main = (props) => {
   };
 
   return (
-    <Container maxWidth="md">
-      <h1>Quizzicle</h1>
-      <Grid container>
+    <>
+      <div className="banner" style={{ backgroundColor: "rgb(127, 83, 180)" }}>
+        <h1>Quizzicle</h1>
+      </div>
+      <Container maxWidth="md">
         <Grid container item justify="center" md={12}>
           <Tabs value={value} onChange={handleChange} centered>
-            <Tab style={{ fontSize: 14 }} label="Play" {...a11yProps(0)} />
             <Tab
-              style={{ fontSize: 14 }}
+              style={{ fontSize: 14, color: "black" }}
+              label="Play"
+              {...a11yProps(0)}
+            />
+            <Tab
+              style={{ fontSize: 14, color: "black" }}
               label="Statistics"
               {...a11yProps(1)}
             />
           </Tabs>
+          <Grid item xs={12}>
+            <Divider />
+            <TabPanel value={value} index={0}>
+              <Grid item xs={12}>
+                <Game username={props.username} />
+              </Grid>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <Statistic />
+            </TabPanel>
+          </Grid>
         </Grid>
-
-        <Grid item md={12}>
-          <TabPanel value={value} index={0}>
-            <Grid item md={12}>
-              <Game username={props.username} />
-            </Grid>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <Statistic />
-          </TabPanel>
-        </Grid>
-      </Grid>
-    </Container>
+        <Divider />
+      </Container>
+    </>
   );
 };
 
