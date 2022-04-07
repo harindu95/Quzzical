@@ -1,5 +1,5 @@
 .game {
-  padding: 50px;
+  padding: 40px;
   border: 2px black solid;
   background-color: orange;
   border-radius: 10px;
@@ -23,6 +23,11 @@ h2 {
 }
 
 h3 {
+  color: white;
+  text-shadow: 1px 2px 3px black;
+  margin: 0px;
+}
+h4 {
   color: white;
   text-shadow: 1px 2px 3px black;
   margin: 0px;
@@ -61,9 +66,9 @@ h3 {
   border: 2px black solid;
   border-radius: 10px;
   background-color: green;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
 }
 
 .chat {
@@ -77,11 +82,51 @@ h3 {
   display: flex;
   justify-content: center;
   padding: 15px;
-  width: 100%;
+  border: solid black 2px;
 }
 
 .leaderboard {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container {
+  margin-top: 10px;
+  padding: 20px;
+  border: solid black 2px;
+  border-radius: 5px;
+  width: auto;
+  background-color: rgb(1, 146, 212);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.window {
+  padding-bottom: 10px;
+}
+
+.content {
+  padding-bottom: 50px;
+}
+.chatBox {
+  display: flex;
+  border: solid black 2px;
+  border-radius: 5px;
+  height: 35vh;
+  padding: 10px;
+  background-color: white;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+}
+.textField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: black solid 0.5px;
+  border-radius: 5px;
 }

@@ -4,6 +4,22 @@ var cors = require("cors");
 const port = 2000;
 const axios = require("axios");
 const mysql = require("mysql");
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+
+let messages = [];
+
+io.on("connection", (socket) => {
+  socket.on("message", ({ user, message }) => {
+    if (message !== undefined) {
+      const date = new Date();
+      let timeStamp = date.toLocaleTimeString();
+      messages.unshift({ timeStamp: timeStamp, user, message: message });
+      console.log(messages);
+    }
+    io.emit("message", messages);
+  });
+});
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -73,11 +89,15 @@ app.get("/questions", async (req, res) => {
   console.log("sendin");
   try {
     const response = await axios.get(
-      "https://opentdb.com/api.php?amount=10&type=multiple&encode=url3986"
+      "https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple&encode=url3986"
     );
     const data = response.data.results;
     res.send(data);
   } catch (error) {
     console.log(error);
   }
+});
+
+http.listen(4000, function () {
+  console.log("chat room listening on port 4000");
 });

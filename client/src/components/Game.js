@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Snackbar, Alert, Container, Grid, Button, Modal } from "@mui/material";
+import {
+  Snackbar,
+  Alert,
+  Container,
+  Grid,
+  Button,
+  Modal,
+  CircularProgress,
+} from "@mui/material";
 import ChatBox from "./ChatBox";
 import CheckCircleTwoToneIcon from "@mui/icons-material/CheckCircleTwoTone";
 import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
@@ -37,11 +45,7 @@ function Game({ username }) {
       setTime({ startTime: time.startTime, currentTime: remainingTime });
     }
 
-    return (
-      <div className="timer">
-        <div className="value">{remainingTime}</div>
-      </div>
-    );
+    return <h4>{remainingTime}</h4>;
   };
 
   const handleClick = (e) => {
@@ -185,7 +189,11 @@ function Game({ username }) {
   }, []);
 
   if (questions.length < 5) {
-    return <h1>loading game...</h1>;
+    return (
+      <div>
+        LOADING GAME... <CircularProgress color="secondary" />{" "}
+      </div>
+    );
   } else {
     return (
       <Container maxWidth="xl" className="game" sx={{ paddingTop: "0" }}>
@@ -216,11 +224,11 @@ function Game({ username }) {
                   <Grid item>
                     <CountdownCircleTimer
                       key={key}
-                      size={50}
+                      size={35}
                       strokeWidth={3}
                       isPlaying={quizState.clock}
                       duration={quizState.totalTime}
-                      colors={["#000000"]}
+                      colors={["#FFFFFF"]}
                       onComplete
                     >
                       {renderTime}

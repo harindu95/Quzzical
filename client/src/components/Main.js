@@ -10,6 +10,7 @@ import {
   Container,
   Grid,
   Divider,
+  CircularProgress,
 } from "@mui/material";
 import "./style.css";
 
@@ -64,6 +65,11 @@ const Main = (props) => {
               label="Statistics"
               {...a11yProps(1)}
             />
+            <Tab
+              style={{ fontSize: 14, color: "black" }}
+              label="Chat"
+              {...a11yProps(2)}
+            />
           </Tabs>
           <Grid item xs={12}>
             <Divider />
@@ -74,6 +80,9 @@ const Main = (props) => {
             </TabPanel>
             <TabPanel value={value} index={1}>
               <Statistic />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <ChatBox nickname={props.username} color="purple" />
             </TabPanel>
           </Grid>
         </Grid>

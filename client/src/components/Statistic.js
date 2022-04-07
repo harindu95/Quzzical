@@ -32,7 +32,7 @@ function Statistic(props) {
   }, []);
 
   return (
-    <Container maxWidth="md" className="leaderboard">
+    <div>
       <div className="banner" style={{ backgroundColor: "rgb(227, 70, 14)" }}>
         <h1>Leaderboard</h1>
       </div>
@@ -61,7 +61,7 @@ function Statistic(props) {
           ))}
         </TableBody>
       </Table>
-    </Container>
+    </div>
   );
 }
 
