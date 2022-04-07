@@ -23,7 +23,6 @@ function Game({ username }) {
   });
   const [resultIcon, setResulIcon] = useState();
   const [index, setIndex] = useState(0);
-  const [apiData, setData] = useState(undefined);
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(
     quizState.totalTime * quizState.totalQuestions
@@ -138,6 +137,7 @@ function Game({ username }) {
     setIndex(questions.length - 1);
     setKey((prevKey) => prevKey + 1);
     setQuizState({ totalTime: 60, totalQuestions: 10, clock: false });
+    setScore(0);
   };
 
   const getQuestions = async () => {
@@ -225,7 +225,7 @@ function Game({ username }) {
                   onClick={handleStartQuizButton}
                   disabled={buttonState.question}
                 >
-                  <h1>{questions[index].question.toString()}</h1>
+                  <h3>{questions[index].question.toString()}</h3>
                 </Button>
               </Grid>
             </div>
@@ -247,7 +247,7 @@ function Game({ username }) {
               className="answer"
               id="_0"
             >
-              <h1>{decodeURIComponent(questions[index].answers[0])}</h1>
+              <h3>{decodeURIComponent(questions[index].answers[0])}</h3>
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -258,7 +258,7 @@ function Game({ username }) {
               className="answer"
               id="_1"
             >
-              <h1>{decodeURIComponent(questions[index].answers[1])}</h1>
+              <h3>{decodeURIComponent(questions[index].answers[1])}</h3>
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -269,7 +269,7 @@ function Game({ username }) {
               className="answer"
               id="_2"
             >
-              <h1>{decodeURIComponent(questions[index].answers[2])}</h1>
+              <h3>{decodeURIComponent(questions[index].answers[2])}</h3>
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -280,7 +280,7 @@ function Game({ username }) {
               className="answer"
               id="_3"
             >
-              <h1>{decodeURIComponent(questions[index].answers[3])}</h1>
+              <h3>{decodeURIComponent(questions[index].answers[3])}</h3>
             </Button>
           </Grid>
         </Grid>

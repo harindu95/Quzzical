@@ -39,7 +39,7 @@ const Main = (props) => {
   };
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="md">
       <h1>Quizzicle</h1>
       <Grid container>
         <Grid container item justify="center" md={12}>
