@@ -5,6 +5,14 @@ const port = 2000;
 const axios = require("axios");
 const mysql = require("mysql");
 
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+  database: "Quizzical",
+});
+connection.connect();
+
 app.use(cors());
 app.use(express.json());
 app.use(cors());
@@ -29,29 +37,36 @@ app.get("/getLeaderboard/", (req, res) => {
 });
 
 app.post("/submitScore/", (req, res) => {
-  
-  let { username, score} = req.body;
+  let { username, score } = req.body;
   //console.log("username", username);
-  
-  connection.query("SELECT username, score FROM player WHERE username = '"+ username + "'", (err, result, fields) => {
-    //console.log(result[0].score);
-    if (err) throw err
-    
-    else if(result.length === 0){
-      connection.query('INSERT INTO player(username,score) VALUES(?,?)',[username, score], (err, rows, fields) => {
-        if (err) throw err
-        res.send('Username and score stored successfully');
-      })
-    
-    }else{
-      score = Math.max(result[0].score, score);
-      connection.query("UPDATE player SET score = ? WHERE username = ?",[score, username], (err, rows, fields) => {
-        if (err) throw err
-        res.send('Score updated successfully');
-      })
+
+  connection.query(
+    "SELECT username, score FROM player WHERE username = '" + username + "'",
+    (err, result, fields) => {
+      //console.log(result[0].score);
+      if (err) throw err;
+      else if (result.length === 0) {
+        connection.query(
+          "INSERT INTO player(username,score) VALUES(?,?)",
+          [username, score],
+          (err, rows, fields) => {
+            if (err) throw err;
+            res.send("Username and score stored successfully");
+          }
+        );
+      } else {
+        score = Math.max(result[0].score, score);
+        connection.query(
+          "UPDATE player SET score = ? WHERE username = ?",
+          [score, username],
+          (err, rows, fields) => {
+            if (err) throw err;
+            res.send("Score updated successfully");
+          }
+        );
+      }
     }
-  })
-  
+  );
 });
 
 app.get("/questions", async (req, res) => {
