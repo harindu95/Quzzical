@@ -10,7 +10,6 @@ import {
   Container,
   Grid,
   Divider,
-  CircularProgress,
 } from "@mui/material";
 import "./style.css";
 
@@ -53,7 +52,7 @@ const Main = (props) => {
       <div className="banner" style={{ backgroundColor: "rgb(127, 83, 180)" }}>
         <h1>Quizzicle</h1>
       </div>
-      <Container maxWidth="md">
+      <div className="mainContainer">
         <Grid container item justify="center" md={12}>
           <Tabs value={value} onChange={handleChange} centered>
             <Tab
@@ -88,7 +87,7 @@ const Main = (props) => {
           </Grid>
         </Grid>
         <Divider />
-      </Container>
+      </div>
     </>
   );
 };

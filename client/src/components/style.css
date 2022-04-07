@@ -5,6 +5,19 @@
   border-radius: 10px;
 }
 
+.mainContainer {
+  width: 60%;
+  margin: auto;
+}
+
+span {
+  margin: 0;
+}
+
+p {
+  margin: 5px;
+}
+
 body {
   height: 100%;
   margin: 0;
@@ -133,4 +146,20 @@ h4 {
   background-color: white;
   border: black solid 0.5px;
   border-radius: 5px;
+}
+
+@media (max-width: 750px) {
+  p {
+    font-size: 12px;
+  }
+  .container {
+    margin: 0;
+  }
+  .window {
+    margin: 0;
+  }
+  .mainContainer {
+    width: 100%;
+    margin: 0;
+  }
 }

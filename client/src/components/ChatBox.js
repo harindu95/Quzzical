@@ -50,7 +50,7 @@ function ChatBox(props) {
         >
           <h1>Chat Room</h1>
         </div>
-        <Box sx={{ flexGrow: 1 }} className="container">
+        <div className="container">
           <Grid container className="window">
             <Grid item container spacing={3} className="content">
               <Grid item xs={12} md={12} lg={12} className="chatWindow">
@@ -93,7 +93,7 @@ function ChatBox(props) {
               </Grid>
             </Grid>
           </Grid>
-        </Box>
+        </div>
       </>
     );
   }
