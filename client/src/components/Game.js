@@ -100,6 +100,8 @@ function Game({ username }) {
       setResulIcon(wrong);
       setOpenAlert(true);
     }
+
+    console.log(score);
   };
 
   const handleClose = () => {
@@ -156,7 +158,6 @@ function Game({ username }) {
     setIndex(questions.length - 1);
     setKey((prevKey) => prevKey + 1);
     setQuizState({ totalTime: 60, totalQuestions: 10, clock: false });
-    setScore(0);
   };
 
   const getQuestions = async () => {
