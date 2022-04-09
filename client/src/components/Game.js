@@ -49,8 +49,6 @@ function Game({ username }) {
   };
 
   const handleClick = (e) => {
-    console.log(e);
-
     let correctAnswer = "";
     let answer = "default";
     if (e !== "timeout") {
@@ -58,8 +56,17 @@ function Game({ username }) {
       setTime({ startTime: time.currentTime, currentTime: time.currentTime });
 
       correctAnswer = questions[index].correct_answer;
+      console.log(e);
       answer = questions[index].answers[parseInt(e.target.id.charAt(1))];
       questions[index].index = parseInt(e.target.id.charAt(1));
+    }
+
+    console.log(correctAnswer);
+    console.log(answer);
+
+    if (answer == undefined) {
+      setButtonState({ answer: false, question: true });
+      return;
     }
 
     if (correctAnswer === answer) {
@@ -100,6 +107,7 @@ function Game({ username }) {
   };
 
   const handleStartQuizButton = () => {
+    console.log(questions);
     if (index > 5) {
       getQuestions();
       console.log("restartr");
@@ -180,7 +188,6 @@ function Game({ username }) {
           answers: ["", "", "", ""],
         });
         setQuestions(_questions);
-        console.log(questions);
       });
   };
 
