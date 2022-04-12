@@ -19,7 +19,7 @@ Run the following command in MySql
 ```
 CREATE DATABASE IF NOT EXISTS quzzical;
 CREATE USER 'quzzical'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-GRANT ALL PRIVILEGES ON quzzical.\* TO 'quzzical'@'localhost';
+GRANT ALL PRIVILEGES ON quzzical.* TO 'quzzical'@'localhost';
 ```
 
 ### Seed Database
