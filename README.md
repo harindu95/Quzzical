@@ -1,5 +1,7 @@
 # Quzzical
 
+Github: https://github.com/harindu95/Quzzical/
+
 ## Running the Applications
 
 - To run the application we need to complete the following steps:
