@@ -23,9 +23,9 @@ io.on("connection", (socket) => {
 
 const connection = mysql.createConnection({
   host: "localhost",
-  user: "root",
+  user: "quzzical",
   password: "password",
-  database: "Quizzical",
+  database: "quzzical",
 });
 connection.connect();
 
